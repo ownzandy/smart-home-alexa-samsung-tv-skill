@@ -36,7 +36,7 @@ var samsungRequest = function(endpoint, success, error, cb) {
 
 app.intent('volumeUp',
   {
-    "slots":[],
+    "slots":{},
     "utterances": utterancesDict['volumeUp']
   },
   function(request,response) {
@@ -48,7 +48,7 @@ app.intent('volumeUp',
 
 app.intent('volumeDown',
   {
-    "slots":[],
+    "slots":{},
     "utterances": utterancesDict['volumeDown']
   },
   function(request,response) {
@@ -60,7 +60,7 @@ app.intent('volumeDown',
 
 app.intent('chineseSource',
   {
-    "slots":[],
+    "slots":{},
     "utterances": utterancesDict['chineseSource']
   },
   function(request,response) {
@@ -72,7 +72,7 @@ app.intent('chineseSource',
 
 app.intent('powerOff',
   {
-    "slots":[],
+    "slots":{},
     "utterances": utterancesDict['powerOff']
   },
   function(request,response) {
