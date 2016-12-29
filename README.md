@@ -1,1 +1,1 @@
-# smart-home-samsung-alexa-skill
+# smart-home-alexa-samsung-tv-skill
