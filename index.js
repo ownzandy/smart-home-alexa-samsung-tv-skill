@@ -17,7 +17,7 @@ var utterancesDict = {
   'volumeDown': ['volume down', 'softer'],
   'chineseSource': ['chinese', 'chinese source'],
   'powerOff': ['turn off', 'power off'],
-  'mute': ['mute']
+  'mute': ['mute', 'unmute']
 }
 
 var samsungRequest = function(endpoint, success, error, cb) {
