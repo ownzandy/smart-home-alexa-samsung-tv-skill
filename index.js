@@ -2,8 +2,13 @@
 
 module.change_code = 1
 var req = require('request')
-var alexa = require( 'alexa-app' )
+var alexa = require('alexa-app')
 var app = new alexa.app('samsung-skill')
+
+
+app.launch(function( request, response ) {
+  response.say('Welcome').reprompt( 'Way to go.').shouldEndSession(false);
+});
 
 app.error = function( exception, request, response ) {
   console.log(exception)
@@ -49,7 +54,6 @@ app.intent('volumeDown',
   function(request,response) {
     samsungRequest('vol_down', 'Your volume was increased', 'Could not turn down the volume', function callback(resp) {
       response.say(resp)
-
     })
   }
 )
