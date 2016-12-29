@@ -75,7 +75,7 @@ app.intent('volumeDown',
   },
   function(request,response) {
     samsungRequest('mute', 'Your TV was muted or un-muted', 'Could not mute your TV', function callback(muteResp) {
-      samsungRequest('mute', 'Your TV was muted or un-muted', 'Could not mute your TV', function callback(resp) {
+      samsungRequest('vol_down', 'Your volume was decreased', 'Could not turn down the volume', function callback(resp) {
         response.say(resp)
         response.send();
       })
