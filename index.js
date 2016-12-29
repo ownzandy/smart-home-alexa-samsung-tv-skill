@@ -34,7 +34,7 @@ app.launch(function(request, response) {
   samsungRequest('mute', 'What would you like to do with your TV?', 'Could not access your TV', function callback(resp) {
       response.say(resp).shouldEndSession(false)
       response.send();
-    })
+  })
   return false
 });
 
@@ -58,12 +58,10 @@ app.intent('volumeUp',
     "utterances": utterancesDict['volumeUp']
   },
   function(request,response) {
-    samsungRequest('mute', 'Your TV was muted or un-muted', 'Could not mute your TV', function callback(muteResp) {
-        samsungRequest('vol_up', 'Your volume was increased', 'Could not turn up the volume', function callback(resp) {
-          response.say(resp)
-          response.send();
-        })
-      })
+    samsungRequest('vol_up', 'Your volume was increased', 'Could not turn up the volume', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
     return false
   }
 )
@@ -74,11 +72,9 @@ app.intent('volumeDown',
     "utterances": utterancesDict['volumeDown']
   },
   function(request,response) {
-    samsungRequest('mute', 'Your TV was muted or un-muted', 'Could not mute your TV', function callback(muteResp) {
-      samsungRequest('vol_down', 'Your volume was decreased', 'Could not turn down the volume', function callback(resp) {
+    samsungRequest('vol_down', 'Your volume was decreased', 'Could not turn down the volume', function callback(resp) {
         response.say(resp)
         response.send();
-      })
     })
     return false
   }
@@ -90,11 +86,9 @@ app.intent('chineseSource',
     "utterances": utterancesDict['chineseSource']
   },
   function(request,response) {
-    samsungRequest('mute', 'Your TV was muted or un-muted', 'Could not mute your TV', function callback(muteResp) {      
-      samsungRequest('chinese', 'TV was switched to Chinese Source', 'Could not switch to Chinese Source', function callback(resp) {
-        response.say(resp)
-        response.send()
-      })
+    samsungRequest('chinese', 'TV was switched to Chinese Source', 'Could not switch to Chinese Source', function callback(resp) {
+      response.say(resp)
+      response.send()
     })
     return false
   }
@@ -106,14 +100,16 @@ app.intent('powerOff',
     "utterances": utterancesDict['powerOff']
   },
   function(request,response) {
-    samsungRequest('mute', 'Your TV was muted or un-muted', 'Could not mute your TV', function callback(muteResp) {      
-      samsungRequest('off', 'Turned TV Off', 'Could not turn TV off', function callback(resp) {
+    samsungRequest('off', 'Turned TV Off', 'Could not turn TV off', function callback(resp) {
         response.say(resp)
         response.send()
       })
-    })
     return false
   }
 )
+
+app.sessionEnded(function(request,response) {
+  samsungRequest('mute', '', '', function callback(resp) {})
+});
 
 module.exports = app
