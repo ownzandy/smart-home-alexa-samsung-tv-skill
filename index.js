@@ -13,10 +13,11 @@ app.error = function( exception, request, response ) {
 }
 
 var utterancesDict = {
-  'volumeUp': ['up', 'louder'],
-  'volumeDown': ['down', 'softer'],
+  'volumeUp': ['volume up', 'louder'],
+  'volumeDown': ['volume down', 'softer'],
   'chineseSource': ['chinese', 'chinese source'],
-  'powerOff': ['turn off', 'power off']
+  'powerOff': ['turn off', 'power off'],
+  'mute': ['mute']
 }
 
 var samsungRequest = function(endpoint, success, error, cb) {
@@ -28,6 +29,28 @@ var samsungRequest = function(endpoint, success, error, cb) {
      }
   })
 }
+
+app.launch(function(request, response) {
+  samsungRequest('mute', 'What would you like to do with your TV?', 'Could not access your TV', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+});
+
+app.intent('mute',
+  {
+    "slots":{},
+    "utterances": utterancesDict['mute']
+  },
+  function(request,response) {
+    samsungRequest('mute', 'Your TV was muted', 'Could not mute your TV', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
 
 app.intent('volumeUp',
   {
