@@ -32,7 +32,7 @@ var samsungRequest = function(endpoint, success, error, cb) {
 
 app.launch(function(request, response) {
   samsungRequest('mute', 'What would you like to do with your TV?', 'Could not access your TV', function callback(resp) {
-      response.say(resp)
+      response.say(resp).shouldEndSession(false)
       response.send();
     })
   return false
