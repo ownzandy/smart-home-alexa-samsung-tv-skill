@@ -5,11 +5,6 @@ var req = require('request')
 var alexa = require('alexa-app')
 var app = new alexa.app('samsung-skill')
 
-
-app.launch(function( request, response ) {
-  response.say('Welcome').reprompt( 'Way to go.').shouldEndSession(false);
-});
-
 app.error = function( exception, request, response ) {
   console.log(exception)
   console.log(request)
@@ -42,7 +37,9 @@ app.intent('volumeUp',
   function(request,response) {
     samsungRequest('vol_up', 'Your volume was increased', 'Could not turn up the volume', function callback(resp) {
       response.say(resp)
+      response.send();
     })
+    return false
   }
 )
 
@@ -54,7 +51,9 @@ app.intent('volumeDown',
   function(request,response) {
     samsungRequest('vol_down', 'Your volume was increased', 'Could not turn down the volume', function callback(resp) {
       response.say(resp)
+      response.send()
     })
+    return false
   }
 )
 
@@ -66,7 +65,9 @@ app.intent('chineseSource',
   function(request,response) {
     samsungRequest('chinese', 'TV was switched to Chinese Source', 'Could not switch to Chinese Source', function callback(resp) {
       response.say(response)
+      response.send()
     })
+    return false
   }
 )
 
@@ -78,7 +79,9 @@ app.intent('powerOff',
   function(request,response) {
     samsungRequest('off', 'Turned TV Off', 'Could not turn TV off', function callback(resp) {
       response.say(resp)
+      response.send()
     })
+    return false
   }
 )
 
