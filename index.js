@@ -64,7 +64,7 @@ app.intent('chineseSource',
   },
   function(request,response) {
     samsungRequest('chinese', 'TV was switched to Chinese Source', 'Could not switch to Chinese Source', function callback(resp) {
-      response.say(response)
+      response.say(resp)
       response.send()
     })
     return false
