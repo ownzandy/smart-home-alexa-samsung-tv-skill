@@ -49,7 +49,7 @@ app.intent('volumeDown',
     "utterances": utterancesDict['volumeDown']
   },
   function(request,response) {
-    samsungRequest('vol_down', 'Your volume was increased', 'Could not turn down the volume', function callback(resp) {
+    samsungRequest('vol_down', 'Your volume was decreased', 'Could not turn down the volume', function callback(resp) {
       response.say(resp)
       response.send()
     })
