@@ -21,7 +21,7 @@ var utterancesDict = {
 
 var samsungRequest = function(endpoint, success, error, cb) {
   req('https://4a5178e5.ngrok.io/' + endpoint, function (err, response, body) {
-    if (!err && response.statusCode == 200 && response['error'] != null) {
+    if (!err && response.statusCode == 200 && response['error'] == null) {
       return cb(success)
      } else {
       return cb(error)
