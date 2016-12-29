@@ -13,15 +13,15 @@ app.error = function( exception, request, response ) {
 }
 
 var utterancesDict = {
-  'volumeUp': ['increase the volume', 'increase volume', 'be louder', 'up the volume', 'volume up', 'up the volume', 'turn up the volume', 'turn up volume'],
-  'volumeDown': ['decrease the volume', 'decrease volume', 'be quieter', 'be softer', 'volume down', 'turn down the volume', 'turn down volume'],
-  'chineseSource': ['switch to chinese source', 'chinese source', 'switch chinese source'],
-  'powerOff': ['turn off', 'off', 'power off']
+  'volumeUp': ['up', 'louder'],
+  'volumeDown': ['down', 'softer'],
+  'chineseSource': ['chinese', 'chinese source'],
+  'powerOff': ['turn off', 'power off']
 }
 
 var samsungRequest = function(endpoint, success, error, cb) {
   req('https://4a5178e5.ngrok.io/' + endpoint, function (err, response, body) {
-    if (!err && response.statusCode == 200 && response['error'] == null) {
+    if (!err && response.statusCode == 200 && JSON.parse(body)['error'] == null) {
       return cb(success)
      } else {
       return cb(error)
