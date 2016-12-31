@@ -15,8 +15,8 @@ app.error = function( exception, request, response ) {
 var utterancesDict = {
   'volumeUp': ['up'],
   'volumeDown': ['down'],
-  'englishSource': ['one'],
-  'chineseSource': ['two'],
+  'hdmiOne': ['one'],
+  'hdmiTwo': ['two'],
   'powerOff': ['off'],
   'mute': ['mute', 'unmute']
 }
@@ -73,13 +73,13 @@ app.intent('volumeDown',
   }
 )
 
-app.intent('chineseSource',
+app.intent('hdmiOne',
   {
     "slots":{},
-    "utterances": utterancesDict['chineseSource']
+    "utterances": utterancesDict['hdmiOne']
   },
   function(request,response) {
-    samsungRequest('chinese', 'TV was switched to Chinese Source', 'Could not switch to Chinese Source', function callback(resp) {
+    samsungRequest('hdmiOne', 'TV was switched to HDMI one', 'Could not switch to HDMI one', function callback(resp) {
       response.say(resp)
       response.send()
     })
@@ -87,13 +87,13 @@ app.intent('chineseSource',
   }
 )
 
-app.intent('englishSource',
+app.intent('hdmiTwo',
   {
     "slots":{},
-    "utterances": utterancesDict['englishSource']
+    "utterances": utterancesDict['hdmiTwo']
   },
   function(request,response) {
-    samsungRequest('english', 'TV was switched to English Source', 'Could not switch to English Source', function callback(resp) {
+    samsungRequest('hdmiTwo', 'TV was switched to HDMI two', 'Could not switch to HDMI two', function callback(resp) {
       response.say(resp)
       response.send()
     })
