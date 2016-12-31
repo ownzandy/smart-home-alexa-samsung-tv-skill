@@ -15,7 +15,7 @@ app.error = function( exception, request, response ) {
 var utterancesDict = {
   'volumeUp': ['volume up', 'louder'],
   'volumeDown': ['volume down', 'softer'],
-  'americanSource': ['american', 'american source']
+  'americanSource': ['american', 'american source'],
   'chineseSource': ['chinese', 'chinese source'],
   'powerOff': ['turn off', 'power off'],
   'mute': ['mute', 'unmute']
