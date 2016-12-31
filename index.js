@@ -15,10 +15,10 @@ app.error = function( exception, request, response ) {
 var utterancesDict = {
   'volumeUp': ['up'],
   'volumeDown': ['down'],
-  'englishSource': ['english'],
-  'chineseSource': ['chinese'],
+  'englishSource': ['one'],
+  'chineseSource': ['two'],
   'powerOff': ['off'],
-  'mute': ['mute']
+  'mute': ['mute', 'unmute']
 }
 
 var samsungRequest = function(endpoint, success, error, cb) {
