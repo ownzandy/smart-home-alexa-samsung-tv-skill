@@ -15,6 +15,7 @@ app.error = function( exception, request, response ) {
 var utterancesDict = {
   'volumeUp': ['volume up', 'louder'],
   'volumeDown': ['volume down', 'softer'],
+  'americanSource': ['american', 'american source']
   'chineseSource': ['chinese', 'chinese source'],
   'powerOff': ['turn off', 'power off'],
   'mute': ['mute', 'unmute']
@@ -29,14 +30,6 @@ var samsungRequest = function(endpoint, success, error, cb) {
      }
   })
 }
-
-app.launch(function(request, response) {
-  samsungRequest('mute', 'What would you like to do with your TV?', 'Could not access your TV', function callback(resp) {
-      response.say(resp).shouldEndSession(false)
-      response.send();
-  })
-  return false
-});
 
 app.intent('mute',
   {
@@ -94,6 +87,20 @@ app.intent('chineseSource',
   }
 )
 
+app.intent('americanSource',
+  {
+    "slots":{},
+    "utterances": utterancesDict['americanSource']
+  },
+  function(request,response) {
+    samsungRequest('american', 'TV was switched to American Source', 'Could not switch to American Source', function callback(resp) {
+      response.say(resp)
+      response.send()
+    })
+    return false
+  }
+)
+
 app.intent('powerOff',
   {
     "slots":{},
@@ -107,9 +114,5 @@ app.intent('powerOff',
     return false
   }
 )
-
-app.sessionEnded(function(request,response) {
-  samsungRequest('mute', '', '', function callback(resp) {})
-});
 
 module.exports = app
