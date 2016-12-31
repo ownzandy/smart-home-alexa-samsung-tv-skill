@@ -15,8 +15,8 @@ app.error = function( exception, request, response ) {
 var utterancesDict = {
   'volumeUp': ['up'],
   'volumeDown': ['down'],
-  'hdmiOne': ['one'],
-  'hdmiTwo': ['two'],
+  'hdmiOne': ['hdmi one'],
+  'hdmiTwo': ['hdmi two'],
   'powerOff': ['off'],
   'mute': ['mute', 'unmute']
 }
