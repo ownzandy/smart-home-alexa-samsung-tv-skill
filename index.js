@@ -13,12 +13,12 @@ app.error = function( exception, request, response ) {
 }
 
 var utterancesDict = {
-  'volumeUp': ['volume up', 'louder'],
-  'volumeDown': ['volume down', 'softer'],
-  'americanSource': ['american', 'american source'],
-  'chineseSource': ['chinese', 'chinese source'],
-  'powerOff': ['turn off', 'power off'],
-  'mute': ['mute', 'unmute']
+  'volumeUp': ['up'],
+  'volumeDown': ['down'],
+  'englishSource': ['english'],
+  'chineseSource': ['chinese'],
+  'powerOff': ['off'],
+  'mute': ['mute']
 }
 
 var samsungRequest = function(endpoint, success, error, cb) {
@@ -87,13 +87,13 @@ app.intent('chineseSource',
   }
 )
 
-app.intent('americanSource',
+app.intent('englishSource',
   {
     "slots":{},
-    "utterances": utterancesDict['americanSource']
+    "utterances": utterancesDict['englishSource']
   },
   function(request,response) {
-    samsungRequest('american', 'TV was switched to American Source', 'Could not switch to American Source', function callback(resp) {
+    samsungRequest('english', 'TV was switched to English Source', 'Could not switch to English Source', function callback(resp) {
       response.say(resp)
       response.send()
     })
