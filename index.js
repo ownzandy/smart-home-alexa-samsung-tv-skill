@@ -21,7 +21,7 @@ var utterancesDict = {
   'mute': ['mute', 'unmute']
 }
 
-var samsungRequest = function(endpoint, success, error, cb) {
+var samsungRequest = function(endpoint, cb) {
   req(process.env.SAMSUNG_URL + endpoint, function (err, response, body) {
     if (!err && response.statusCode == 200) {
       return cb(body)
