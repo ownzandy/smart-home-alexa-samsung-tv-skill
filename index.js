@@ -9,7 +9,7 @@ app.error = function( exception, request, response ) {
   console.log(exception)
   console.log(request)
   console.log(response)
-  response.say( 'Sorry an error occured ' + error.message)
+  response.say('Sorry an error occured ' + error.message)
 }
 
 var utterancesDict = {
@@ -22,11 +22,11 @@ var utterancesDict = {
 }
 
 var samsungRequest = function(endpoint, success, error, cb) {
-  req('https://4a5178e5.ngrok.io/' + endpoint, function (err, response, body) {
-    if (!err && response.statusCode == 200 && JSON.parse(body)['error'] == null) {
-      return cb(success)
+  req(process.env.SAMSUNG_URL + endpoint, function (err, response, body) {
+    if (!err && response.statusCode == 200) {
+      return cb(body)
      } else {
-      return cb(error)
+      return cb(err)
      }
   })
 }
@@ -37,7 +37,7 @@ app.intent('mute',
     "utterances": utterancesDict['mute']
   },
   function(request,response) {
-    samsungRequest('mute', 'Your TV was muted or un-muted', 'Could not mute your TV', function callback(resp) {
+    samsungRequest('/mute', function callback(resp) {
       response.say(resp)
       response.send();
     })
@@ -51,7 +51,7 @@ app.intent('volumeUp',
     "utterances": utterancesDict['volumeUp']
   },
   function(request,response) {
-    samsungRequest('vol_up', 'Your volume was increased', 'Could not turn up the volume', function callback(resp) {
+    samsungRequest('/vol_up', function callback(resp) {
       response.say(resp)
       response.send();
     })
@@ -65,7 +65,7 @@ app.intent('volumeDown',
     "utterances": utterancesDict['volumeDown']
   },
   function(request,response) {
-    samsungRequest('vol_down', 'Your volume was decreased', 'Could not turn down the volume', function callback(resp) {
+    samsungRequest('/vol_down', function callback(resp) {
         response.say(resp)
         response.send();
     })
@@ -79,7 +79,7 @@ app.intent('hdmiOne',
     "utterances": utterancesDict['hdmiOne']
   },
   function(request,response) {
-    samsungRequest('hdmiOne', 'TV was switched to HDMI one', 'Could not switch to HDMI one', function callback(resp) {
+    samsungRequest('/hdmiOne', function callback(resp) {
       response.say(resp)
       response.send()
     })
@@ -93,7 +93,7 @@ app.intent('hdmiTwo',
     "utterances": utterancesDict['hdmiTwo']
   },
   function(request,response) {
-    samsungRequest('hdmiTwo', 'TV was switched to HDMI two', 'Could not switch to HDMI two', function callback(resp) {
+    samsungRequest('/hdmiTwo', function callback(resp) {
       response.say(resp)
       response.send()
     })
@@ -107,7 +107,7 @@ app.intent('powerOff',
     "utterances": utterancesDict['powerOff']
   },
   function(request,response) {
-    samsungRequest('off', 'Turned TV Off', 'Could not turn TV off', function callback(resp) {
+    samsungRequest('/off', function callback(resp) {
         response.say(resp)
         response.send()
       })
