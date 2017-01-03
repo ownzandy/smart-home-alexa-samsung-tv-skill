@@ -13,11 +13,21 @@ app.error = function( exception, request, response ) {
 }
 
 var utterancesDict = {
+  'chinesePower': ['chinese power'],
+  'chineseLeft': ['left'],
+  'chineseRight': ['right'],
+  'chineseUp': ['up'],
+  'chineseDown': ['down'],
+  'chineseOk': ['ok', 'enter', 'play', 'pause'],
+  'chineseHome': ['home'],
+  'chineseBack': ['back'],
+  'auxToggle': ['aux', 'sound system'],
   'volumeUp': ['up'],
   'volumeDown': ['down'],
   'hdmiOne': ['hdmi one'],
   'hdmiTwo': ['hdmi two'],
   'powerOff': ['off'],
+  'powerOn': ['on'],
   'mute': ['mute', 'unmute']
 }
 
@@ -31,13 +41,125 @@ var samsungRequest = function(endpoint, cb) {
   })
 }
 
-app.intent('mute',
+app.intent('chinesePower',
   {
     "slots":{},
-    "utterances": utterancesDict['mute']
+    "utterances": utterancesDict['chinesePower']
   },
   function(request,response) {
-    samsungRequest('/mute', function callback(resp) {
+    samsungRequest('/chinese_power', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
+
+app.intent('chineseLeft',
+  {
+    "slots":{},
+    "utterances": utterancesDict['chineseLeft']
+  },
+  function(request,response) {
+    samsungRequest('/chinese_left', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
+
+app.intent('chineseRight',
+  {
+    "slots":{},
+    "utterances": utterancesDict['chineseRight']
+  },
+  function(request,response) {
+    samsungRequest('/chinese_right', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
+
+app.intent('chineseUp',
+  {
+    "slots":{},
+    "utterances": utterancesDict['chineseUp']
+  },
+  function(request,response) {
+    samsungRequest('/chinese_up', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
+
+app.intent('chineseDown',
+  {
+    "slots":{},
+    "utterances": utterancesDict['chineseDown']
+  },
+  function(request,response) {
+    samsungRequest('/chinese_down', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
+
+app.intent('chineseOk',
+  {
+    "slots":{},
+    "utterances": utterancesDict['chineseOk']
+  },
+  function(request,response) {
+    samsungRequest('/chinese_ok', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
+
+app.intent('chineseHome',
+  {
+    "slots":{},
+    "utterances": utterancesDict['chineseHome']
+  },
+  function(request,response) {
+    samsungRequest('/chinese_home', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
+
+app.intent('chineseBack',
+  {
+    "slots":{},
+    "utterances": utterancesDict['chineseBack']
+  },
+  function(request,response) {
+    samsungRequest('/chinese_back', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
+
+app.intent('auxToggle',
+  {
+    "slots":{},
+    "utterances": utterancesDict['auxToggle']
+  },
+  function(request,response) {
+    samsungRequest('/aux_toggle', function callback(resp) {
       response.say(resp)
       response.send();
     })
@@ -114,5 +236,34 @@ app.intent('powerOff',
     return false
   }
 )
+
+app.intent('powerOn',
+  {
+    "slots":{},
+    "utterances": utterancesDict['powerOn']
+  },
+  function(request,response) {
+    samsungRequest('/on', function callback(resp) {
+        response.say(resp)
+        response.send()
+      })
+    return false
+  }
+)
+
+app.intent('mute',
+  {
+    "slots":{},
+    "utterances": utterancesDict['mute']
+  },
+  function(request,response) {
+    samsungRequest('/mute', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
+
 
 module.exports = app
