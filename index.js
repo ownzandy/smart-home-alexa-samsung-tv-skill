@@ -13,13 +13,14 @@ app.error = function( exception, request, response ) {
 }
 
 var utterancesDict = {
+  'chineseAutomation': ['automate chinese'],
   'chinesePower': ['chinese power'],
   'chineseLeft': ['left'],
   'chineseRight': ['right'],
   'chineseUp': ['up'],
   'chineseDown': ['down'],
   'chineseOk': ['ok', 'enter', 'play', 'pause'],
-  'chineseHome': ['home'],
+  'chineseHome': ['return home'],
   'chineseBack': ['back'],
   'auxToggle': ['aux', 'sound system'],
   'volumeUp': ['up'],
@@ -40,6 +41,20 @@ var samsungRequest = function(endpoint, cb) {
      }
   })
 }
+
+app.intent('chineseAutomation',
+  {
+    "slots":{},
+    "utterances": utterancesDict['chineseAutomation']
+  },
+  function(request,response) {
+    samsungRequest('/chinese_automation', function callback(resp) {
+      response.say(resp)
+      response.send();
+    })
+  return false
+  }
+)
 
 app.intent('chinesePower',
   {
