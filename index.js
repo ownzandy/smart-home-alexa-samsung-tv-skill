@@ -33,7 +33,7 @@ var utterancesDict = {
 }
 
 var samsungRequest = function(endpoint, cb) {
-  req(process.env.SAMSUNG_URL + endpoint, function (err, response, body) {
+  req(process.env.SAMSUNG_URL + '/samsung/' + endpoint, function (err, response, body) {
     if (!err && response.statusCode == 200) {
       return cb(body)
      } else {
