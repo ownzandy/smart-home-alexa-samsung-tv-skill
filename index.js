@@ -33,7 +33,7 @@ var utterancesDict = {
 }
 
 var samsungRequest = function(endpoint, cb) {
-  req(process.env.SERVER_URL + '/samsung' + endpoint, {'auth': {'user': process.env.USER, 'password': process.env.PASSWORD} }, function (err, response, body) {
+  req('http://localhost:8081' + endpoint, {'auth': {'user': process.env.USER, 'password': process.env.PASSWORD} }, function (err, response, body) {
     if (!err && response.statusCode == 200) {
       return cb(body)
      } else {
