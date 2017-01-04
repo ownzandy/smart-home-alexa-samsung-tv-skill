@@ -15,20 +15,20 @@ app.error = function( exception, request, response ) {
 var utterancesDict = {
   'chineseAutomation': ['automate chinese'],
   'chinesePower': ['chinese power'],
-  'chineseLeft': ['left'],
-  'chineseRight': ['right'],
-  'chineseUp': ['up'],
-  'chineseDown': ['down'],
+  'chineseLeft': ['move left'],
+  'chineseRight': ['move right'],
+  'chineseUp': ['move up'],
+  'chineseDown': ['move down'],
   'chineseOk': ['ok', 'enter', 'play', 'pause'],
   'chineseHome': ['return'],
   'chineseBack': ['back'],
   'auxToggle': ['connect speaker'],
-  'volumeUp': ['up'],
-  'volumeDown': ['down'],
+  'volumeUp': ['louder'],
+  'volumeDown': ['quieter'],
   'hdmiOne': ['hdmi one'],
   'hdmiTwo': ['hdmi two'],
-  'powerOff': ['off'],
-  'powerOn': ['on'],
+  'powerOff': ['turn off'],
+  'powerOn': ['turn on'],
   'mute': ['mute', 'unmute']
 }
 
@@ -37,7 +37,7 @@ var samsungRequest = function(endpoint, cb) {
     if (!err && response.statusCode == 200) {
       return cb(body)
      } else {
-      return cb(err)
+      return cb('Could not process your request')
      }
   })
 }
