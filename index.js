@@ -13,22 +13,25 @@ app.error = function( exception, request, response ) {
 }
 
 var utterancesDict = {
-  'chineseAutomation': ['automate chinese'],
-  'chinesePower': ['chinese power'],
-  'chineseLeft': ['move left'],
-  'chineseRight': ['move right'],
-  'chineseUp': ['move up'],
-  'chineseDown': ['move down'],
-  'chineseOk': ['ok', 'enter', 'play', 'pause'],
-  'chineseHome': ['return'],
+  'chineseAutomation': ['start'],
+  'chinesePower': ['switch'],
+  'chineseLeft': ['left'],
+  'chineseLeftNumber': ['left {number}'],
+  'chineseRight': ['right'],
+  'chineseRightNumber': ['right {number}'],
+  'chineseUp': ['up'],
+  'chineseUpNumber': ['up {number}'],
+  'chineseDown': ['down'],
+  'chineseDownNumber': ['down {number}'],
+  'chineseOk': ['play'],
+  'chineseHome': ['home'],
   'chineseBack': ['back'],
-  'auxToggle': ['connect speaker'],
+  'auxToggle': ['connect', 'disconnect'],
   'volumeUp': ['louder'],
   'volumeDown': ['quieter'],
-  'hdmiOne': ['hdmi one'],
-  'hdmiTwo': ['hdmi two'],
-  'powerOff': ['turn off'],
-  'powerOn': ['turn on'],
+  'hdmiOne': ['number one'],
+  'hdmiTwo': ['number two'],
+  'power': ['power'],
   'mute': ['mute', 'unmute']
 }
 
@@ -84,6 +87,21 @@ app.intent('chineseLeft',
   }
 )
 
+app.intent('chineseLeftNumber',
+  {
+    "slots":{'number': 'NUMBER'},
+    "utterances": utterancesDict['chineseLeftNumber'],
+  },
+  function(request, response) {
+    var number = request.slot('number')
+    samsungRequest('/chinese_multiple_left?number=' + number, function callback(resp) {
+      response.say(resp)
+      response.send() 
+    })
+  return false
+  }
+)
+
 app.intent('chineseRight',
   {
     "slots":{},
@@ -93,6 +111,21 @@ app.intent('chineseRight',
     samsungRequest('/chinese_right', function callback(resp) {
       response.say(resp)
       response.send();
+    })
+  return false
+  }
+)
+
+app.intent('chineseRightNumber',
+  {
+    "slots":{'number': 'NUMBER'},
+    "utterances": utterancesDict['chineseRightNumber'],
+  },
+  function(request, response) {
+    var number = request.slot('number')
+    samsungRequest('/chinese_multiple_right?number=' + number, function callback(resp) {
+      response.say(resp)
+      response.send()
     })
   return false
   }
@@ -112,6 +145,21 @@ app.intent('chineseUp',
   }
 )
 
+app.intent('chineseUpNumber',
+  {
+    "slots":{'number': 'NUMBER'},
+    "utterances": utterancesDict['chineseUpNumber'],
+  },
+  function(request, response) {
+    var number = request.slot('number')
+    samsungRequest('/chinese_multiple_up?number=' + number, function callback(resp) {
+      response.say(resp)
+      response.send()
+    })
+  return false
+  }
+)
+
 app.intent('chineseDown',
   {
     "slots":{},
@@ -121,6 +169,21 @@ app.intent('chineseDown',
     samsungRequest('/chinese_down', function callback(resp) {
       response.say(resp)
       response.send();
+    })
+  return false
+  }
+)
+
+app.intent('chineseDownNumber',
+  {
+    "slots":{'number': 'NUMBER'},
+    "utterances": utterancesDict['chineseDownNumber'],
+  },
+  function(request, response) {
+    var number = request.slot('number')
+    samsungRequest('/chinese_multiple_down?number=' + number, function callback(resp) {
+      response.say(resp)
+      response.send()
     })
   return false
   }
@@ -238,21 +301,7 @@ app.intent('hdmiTwo',
   }
 )
 
-app.intent('powerOff',
-  {
-    "slots":{},
-    "utterances": utterancesDict['powerOff']
-  },
-  function(request,response) {
-    samsungRequest('/off', function callback(resp) {
-        response.say(resp)
-        response.send()
-      })
-    return false
-  }
-)
-
-app.intent('powerOn',
+app.intent('power',
   {
     "slots":{},
     "utterances": utterancesDict['powerOn']
